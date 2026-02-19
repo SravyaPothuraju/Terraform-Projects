@@ -2,5 +2,32 @@
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
     "ghcr.io/devcontainers/features/terraform:1": {}
-  }
+  },
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+  
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "aws-toolkit-vscode.aws-toolkit-vscode"
+      ]
+    }
+  },
+  
+  "remoteEnv": {
+    "AWS_CLI_AUTO_PROMPT": "on-partial"
+  },
+  
+  "postCreateCommand": "npm install -g aws-cdk && aws --version && cdk --version"
 }
+
